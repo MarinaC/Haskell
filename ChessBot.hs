@@ -138,4 +138,17 @@ botFindMove :: String -> String -> String
 botFindMove board color = "a7 b6" -- TODO: replace this with your program     
               
 
+-- returns true if target free, or enemy piece
+-- parameter 1: unfolded fen
+-- parameter 2: "w"/"b"
+-- parameter 2: target
+-- parameter 3: recursion variable
+getTarget :: String -> String -> Int -> Int -> Bool
+getTarget _ _ 0 _= False
+getTarget _ _ _ 65 = False
+getTarget (x:xs) "w" y z = if not(elem y [1..64]) then False else
+ if ((y == z) && ((x == '1')||(elem x ['r','n','b','k','q','p']))) then True else (getTarget xs "w" y (z+1))
+
+getTarget (x:xs) "b" y z = if not(elem y [1..64]) then False else
+ if ((y == z) && ((x == '1')||(elem x ['R','N','B','K','Q','P']))) then True else (getTarget xs "b" y (z+1))
 
