@@ -4,6 +4,7 @@ module ChessBot where
 import Data.Char
 import Data.List.Split
 
+
 -------------------------------------------
 --    Example Boards and Board validation
 -------------------------------------------
@@ -40,6 +41,23 @@ splitFENString = splitOn "/"
 -----------------------------------------
 --    Bot logic
 -----------------------------------------
+
+
+
+--returns list with name/number of the field occupied with a piece (Jori)
+-- 
+--Param1: FENString
+--Param2: Piece Char 
+searchPiece :: String -> char -> [Int]
+searchPiece fen x = if elemIndexL x (splitFENString fen) == elemIndexR x (splitFENString fen) then elemIndexR x (splitFENString fen)
+							else if elemIndexL x (splitFENString fen) == Nothing then []
+								else elemIndexL x (splitFENString fen) ++ elemIndexR x (splitFENString fen) 
+
+
+-- returns list of all possible rook moves
+rookMoves :: String -> String -> [String]
+rookMoves :: 
+
 
 -- returns a list of all valid moves for the given board and color
 -- parameter 1: first part of FEN String
